@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | LeonEdK Portfolio</title>
+    <title>Admin & Visitor Hub | LeonEdK</title>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,13 +11,10 @@
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Chart.js for Analytics -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <!-- Google Fonts: Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -29,17 +26,16 @@
                         heading: ['Outfit', 'sans-serif'],
                     },
                     colors: {
-                        midnight: {
-                            950: '#020617',
-                            900: '#070F2B',
-                            800: '#1B1A55',
-                            700: '#535C91',
+                        slate: {
+                            850: '#151e2e',
+                            950: '#0a0f1d',
                         },
-                        biolum: {
-                            cyan: '#38BDF8',
-                            teal: '#2DD4BF',
-                            emerald: '#34D399',
-                            glow: '#00F2FE'
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
                         }
                     }
                 }
@@ -48,35 +44,25 @@
     </script>
 
     <style>
-        .midnight-beach-bg {
-            background-image: linear-gradient(
-                to bottom,
-                rgba(2, 6, 23, 0.92) 0%,
-                rgba(7, 15, 43, 0.85) 50%,
-                rgba(2, 6, 23, 0.95) 100%
-            ), 
-            url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        body {
+            background-color: #0b0f19;
+            color: #f1f5f9;
         }
 
-        .glass-card {
-            background: rgba(7, 15, 43, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(56, 189, 248, 0.15);
+        .clean-card {
+            background: rgba(18, 24, 38, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .glass-sidebar {
-            background: rgba(2, 6, 23, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-right: 1px solid rgba(56, 189, 248, 0.12);
+        .clean-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
         }
 
-        .text-glow {
-            text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        .clean-sidebar {
+            background: #0d1322;
+            border-right: 1px solid rgba(255, 255, 255, 0.07);
         }
 
         ::-webkit-scrollbar {
@@ -84,422 +70,352 @@
             height: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #020617;
+            background: #0b0f19;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1B1A55;
+            background: #1e293b;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #2DD4BF;
+            background: #3b82f6;
         }
     </style>
 </head>
-<body class="midnight-beach-bg text-slate-100 font-sans antialiased selection:bg-biolum-teal selection:text-midnight-950 min-h-screen flex flex-col md:flex-row relative overflow-x-hidden">
-
-    <canvas id="adminBiolumCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-30"></canvas>
+<body class="font-sans antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col md:flex-row relative overflow-x-hidden">
 
     <!-- Toast Notification Container -->
     <div id="toastContainer" class="fixed top-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
 
-    <aside class="w-full md:w-64 glass-sidebar shrink-0 z-20 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-800">
+    <aside class="w-full md:w-64 clean-sidebar shrink-0 z-20 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-800">
         <div>
-            <!-- Admin Header Logo -->
-            <div class="p-6 border-b border-slate-800/80 flex items-center justify-between">
-                <a href="index.html" class="font-heading text-lg font-extrabold tracking-wider text-white flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-biolum-teal animate-pulse shadow-[0_0_10px_#2DD4BF]"></span>
-                    LEON<span class="text-biolum-teal">EDK</span>
+            <!-- Header Logo -->
+            <div class="p-5 border-b border-slate-800/80 flex items-center justify-between">
+                <a href="index.html" class="font-heading text-lg font-bold tracking-wide text-white flex items-center gap-2.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+                    LEON<span class="text-indigo-400">EDK</span>
                 </a>
-                <span class="text-[10px] font-bold uppercase tracking-widest text-biolum-cyan bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800">Admin</span>
+                <span id="roleBadge" class="text-[10px] font-semibold uppercase tracking-wider text-indigo-300 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-800/60">Admin Hub</span>
             </div>
 
-            <nav class="p-4 space-y-1">
-                <button onclick="switchTab('overview')" id="nav-overview" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold text-biolum-teal bg-teal-950/40 border border-teal-800/50 transition">
-                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard Overview
+            <!-- Navigation Links -->
+            <nav class="p-3 space-y-1">
+                <button onclick="switchTab('overview')" id="nav-overview" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs font-medium text-indigo-400 bg-indigo-950/40 border border-indigo-800/40 transition">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Ringkasan Dashboard
                 </button>
-                <button onclick="switchTab('mlbb')" id="nav-mlbb" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
-                    <i data-lucide="gamepad-2" class="w-4 h-4 text-biolum-cyan"></i> Panduan MLBB
-                </button>
-                <button onclick="switchTab('running')" id="nav-running" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
-                    <i data-lucide="footprints" class="w-4 h-4 text-biolum-teal"></i> Panduan Lari
-                </button>
-                <button onclick="switchTab('outdoor')" id="nav-outdoor" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
-                    <i data-lucide="compass" class="w-4 h-4 text-biolum-emerald"></i> Panduan Outdoor
-                </button>
-                <button onclick="switchTab('gallery')" id="nav-gallery" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
-                    <i data-lucide="image" class="w-4 h-4 text-slate-400"></i> Kelola Galeri
-                </button>
-                <button onclick="switchTab('messages')" id="nav-messages" class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+                <button onclick="switchTab('manage-guides')" id="nav-manage-guides" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
                     <div class="flex items-center gap-3">
-                        <i data-lucide="mail" class="w-4 h-4 text-amber-400"></i> Pesan Masuk
+                        <i data-lucide="file-text" class="w-4 h-4 text-slate-400"></i> Kelola Panduan
                     </div>
-                    <span id="unreadBadge" class="px-2 py-0.5 text-[10px] font-bold bg-amber-500/20 text-amber-400 rounded-full border border-amber-500/30">2</span>
+                    <span id="navGuideCountBadge" class="px-2 py-0.5 text-[10px] font-bold bg-slate-800 text-slate-300 rounded-md">6</span>
+                </button>
+                <button onclick="switchTab('inbox')" id="nav-inbox" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="inbox" class="w-4 h-4 text-slate-400"></i> Pertanyaan Masuk
+                    </div>
+                    <span id="navInboxBadge" class="px-2 py-0.5 text-[10px] font-bold bg-indigo-500/20 text-indigo-300 rounded-md">2</span>
+                </button>
+                <div class="pt-3 pb-1 px-3 text-[10px] font-semibold text-slate-500 uppercase tracking-wider">Akses Pembaca</div>
+                <button onclick="switchTab('reader-view')" id="nav-reader-view" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+                    <i data-lucide="book-open" class="w-4 h-4 text-slate-400"></i> Tampilan Pengunjung
+                </button>
+                <button onclick="switchTab('bookmarks')" id="nav-bookmarks" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="bookmark" class="w-4 h-4 text-amber-400"></i> Bookmark Tersimpan
+                    </div>
+                    <span id="bookmarkBadge" class="px-2 py-0.5 text-[10px] font-bold bg-amber-500/10 text-amber-400 rounded-md">0</span>
                 </button>
             </nav>
         </div>
 
-        <div class="p-4 border-t border-slate-800/80">
-            <div class="flex items-center justify-between bg-slate-900/60 p-3 rounded-xl border border-slate-800">
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-biolum-cyan to-biolum-teal flex items-center justify-center font-bold text-midnight-950 text-xs">
-                        LK
-                    </div>
-                    <div>
-                        <div class="text-xs font-bold text-white">LeonEdK Admin</div>
-                        <div class="text-[10px] text-slate-400">Online • Active Session</div>
-                    </div>
+        <!-- Mode Toggle & Profile -->
+        <div class="p-4 border-t border-slate-800/80 space-y-3">
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 flex items-center justify-between">
+                <div>
+                    <div class="text-xs font-semibold text-white">Mode Akses</div>
+                    <div id="activeRoleText" class="text-[10px] text-indigo-400 font-medium">Administrator</div>
                 </div>
-                <a href="index.html" title="Lihat Website Utama" class="text-slate-400 hover:text-biolum-teal p-1">
-                    <i data-lucide="external-link" class="w-4 h-4"></i>
-                </a>
+                <button onclick="toggleRole()" id="roleToggleBtn" class="px-2.5 py-1 text-[11px] font-semibold bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition">
+                    Ubah
+                </button>
             </div>
+            <a href="index.html" class="w-full flex items-center justify-center gap-2 py-2 bg-slate-800/60 hover:bg-slate-800 text-slate-300 text-xs rounded-lg transition border border-slate-700/60">
+                <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Landing Page
+            </a>
         </div>
     </aside>
 
-    <main class="flex-1 min-w-0 z-10 p-4 sm:p-8 overflow-y-auto">
+    <!-- Main Content Area -->
+    <main class="flex-1 min-w-0 z-10 p-5 sm:p-8 overflow-y-auto">
         
-        <!-- Top Navigation Bar -->
         <header class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
-                <h1 id="pageTitle" class="font-heading text-2xl sm:text-3xl font-black text-white">Dashboard Overview</h1>
-                <p class="text-slate-400 text-xs sm:text-sm">Pusat Pengelolaan Konten & Panduan Portofolio LeonEdK</p>
+                <h1 id="pageTitle" class="font-heading text-2xl sm:text-3xl font-bold text-white tracking-tight">Ringkasan Dashboard</h1>
+                <p id="pageSubtitle" class="text-slate-400 text-xs sm:text-sm mt-0.5">Kelola materi panduan, pantau statistik, dan jawab pertanyaan pengunjung.</p>
             </div>
             
             <div class="flex items-center gap-3">
-                <a href="index.html" class="px-4 py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold rounded-xl flex items-center gap-2 transition">
-                    <i data-lucide="eye" class="w-4 h-4 text-biolum-cyan"></i> Lihat Site Live
-                </a>
-                <button onclick="openModal('quickAddModal')" class="px-4 py-2 bg-gradient-to-r from-biolum-teal to-biolum-cyan text-midnight-950 text-xs font-bold rounded-xl shadow-lg shadow-biolum-teal/20 hover:scale-105 transition flex items-center gap-2">
-                    <i data-lucide="plus" class="w-4 h-4"></i> Tambah Panduan
+                <button id="adminAddGuideBtn" onclick="openGuideModal()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg shadow-sm transition flex items-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i> Tambah Panduan Baru
                 </button>
             </div>
         </header>
 
-        <section id="tab-overview" class="space-y-8">
+        <section id="tab-overview" class="space-y-6">
             
-            <!-- Quick Stat Cards -->
+            <!-- Statistics Row -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="glass-card p-5 rounded-2xl">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-medium text-slate-400">Total Panduan Aktif</span>
-                        <div class="w-8 h-8 rounded-lg bg-cyan-950/80 text-biolum-cyan flex items-center justify-center">
+                <div class="clean-card p-5 rounded-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-medium text-slate-400">Total Panduan</span>
+                        <div class="w-8 h-8 rounded-lg bg-indigo-950/80 text-indigo-400 flex items-center justify-center border border-indigo-800/40">
                             <i data-lucide="book-open" class="w-4 h-4"></i>
                         </div>
                     </div>
-                    <div id="statTotalGuides" class="text-2xl font-black font-heading text-white">12</div>
-                    <div class="text-[11px] text-biolum-teal mt-1">MLBB, Lari & Outdoor</div>
+                    <div id="statTotalGuides" class="text-2xl font-bold font-heading text-white">6</div>
+                    <div class="text-[11px] text-slate-400 mt-1">Terdaftar di 3 kategori</div>
                 </div>
 
-                <div class="glass-card p-5 rounded-2xl">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-medium text-slate-400">Foto Galeri</span>
-                        <div class="w-8 h-8 rounded-lg bg-teal-950/80 text-biolum-teal flex items-center justify-center">
-                            <i data-lucide="image" class="w-4 h-4"></i>
+                <div class="clean-card p-5 rounded-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-medium text-slate-400">Pertanyaan Masuk</span>
+                        <div class="w-8 h-8 rounded-lg bg-blue-950/80 text-blue-400 flex items-center justify-center border border-blue-800/40">
+                            <i data-lucide="message-square" class="w-4 h-4"></i>
                         </div>
                     </div>
-                    <div id="statTotalGallery" class="text-2xl font-black font-heading text-white">8</div>
-                    <div class="text-[11px] text-slate-400 mt-1">Foto kegiatan & dokumentasi</div>
+                    <div id="statQuestionsCount" class="text-2xl font-bold font-heading text-white">2</div>
+                    <div class="text-[11px] text-blue-400 mt-1">Perlu ditanggapi</div>
                 </div>
 
-                <div class="glass-card p-5 rounded-2xl">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-medium text-slate-400">Pesan / Pertanyaan</span>
-                        <div class="w-8 h-8 rounded-lg bg-amber-950/80 text-amber-400 flex items-center justify-center">
-                            <i data-lucide="mail" class="w-4 h-4"></i>
+                <div class="clean-card p-5 rounded-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-medium text-slate-400">Total Dibaca Pembaca</span>
+                        <div class="w-8 h-8 rounded-lg bg-emerald-950/80 text-emerald-400 flex items-center justify-center border border-emerald-800/40">
+                            <i data-lucide="check-circle-2" class="w-4 h-4"></i>
                         </div>
                     </div>
-                    <div id="statTotalMessages" class="text-2xl font-black font-heading text-white">5</div>
-                    <div class="text-[11px] text-amber-400 mt-1">2 Perlu ditanggapi</div>
+                    <div id="statReadProgress" class="text-2xl font-bold font-heading text-white">0</div>
+                    <div class="text-[11px] text-slate-400 mt-1">Sesi dibaca oleh pengunjung</div>
                 </div>
 
-                <div class="glass-card p-5 rounded-2xl">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-medium text-slate-400">Total Pengunjung Bulan Ini</span>
-                        <div class="w-8 h-8 rounded-lg bg-emerald-950/80 text-biolum-emerald flex items-center justify-center">
-                            <i data-lucide="trending-up" class="w-4 h-4"></i>
+                <div class="clean-card p-5 rounded-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-medium text-slate-400">Status Sistem</span>
+                        <div class="w-8 h-8 rounded-lg bg-slate-800 text-slate-300 flex items-center justify-center border border-slate-700">
+                            <i data-lucide="activity" class="w-4 h-4"></i>
                         </div>
                     </div>
-                    <div class="text-2xl font-black font-heading text-white">1,480</div>
-                    <div class="text-[11px] text-biolum-emerald mt-1">+18.5% dari bulan lalu</div>
+                    <div class="text-2xl font-bold font-heading text-emerald-400 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span> Aktif
+                    </div>
+                    <div class="text-[11px] text-slate-400 mt-1">Sistem siap digunakan</div>
                 </div>
             </div>
 
-            <!-- Analytics Chart & Quick Activity -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <div class="lg:col-span-8 glass-card p-6 rounded-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="font-heading font-bold text-white text-base">Tren Pembaca Panduan per Kategori</h3>
-                        <span class="text-xs text-slate-400">7 Hari Terakhir</span>
+            <!-- Quick Management Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div onclick="switchTab('manage-guides')" class="clean-card p-5 rounded-xl cursor-pointer transition group">
+                    <div class="w-10 h-10 rounded-lg bg-indigo-950 text-indigo-400 flex items-center justify-center font-bold mb-3 group-hover:scale-105 transition">
+                        <i data-lucide="file-plus" class="w-5 h-5"></i>
                     </div>
-                    <div class="h-64 relative">
-                        <canvas id="analyticsChart"></canvas>
-                    </div>
+                    <h3 class="font-heading font-bold text-white text-base mb-1">Manajemen Konten Panduan</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed mb-4">Tambah, edit, atau hapus panduan MLBB, Lari, dan Outdoor secara fleksibel.</p>
+                    <span class="text-xs font-semibold text-indigo-400 flex items-center gap-1">Kelola Panduan <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
                 </div>
 
-                <!-- Recent Activity Timeline -->
-                <div class="lg:col-span-4 glass-card p-6 rounded-2xl flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-heading font-bold text-white text-base mb-4">Aktivitas Terakhir</h3>
-                        <div class="space-y-4 text-xs">
-                            <div class="flex items-start gap-3">
-                                <div class="w-2 h-2 rounded-full bg-biolum-cyan mt-1.5 shrink-0"></div>
-                                <div>
-                                    <div class="text-white font-semibold">Memperbarui Taktik Roamer MLBB</div>
-                                    <div class="text-slate-400 text-[10px]">2 jam yang lalu</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-2 h-2 rounded-full bg-biolum-teal mt-1.5 shrink-0"></div>
-                                <div>
-                                    <div class="text-white font-semibold">Menambahkan Panduan Lari Zone 2</div>
-                                    <div class="text-slate-400 text-[10px]">Kemarin, 16:45</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-2 h-2 rounded-full bg-biolum-emerald mt-1.5 shrink-0"></div>
-                                <div>
-                                    <div class="text-white font-semibold">Mengunggah Foto Ekspedisi Puncak</div>
-                                    <div class="text-slate-400 text-[10px]">3 hari yang lalu</div>
-                                </div>
-                            </div>
-                        </div>
+                <div onclick="switchTab('inbox')" class="clean-card p-5 rounded-xl cursor-pointer transition group">
+                    <div class="w-10 h-10 rounded-lg bg-blue-950 text-blue-400 flex items-center justify-center font-bold mb-3 group-hover:scale-105 transition">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
                     </div>
+                    <h3 class="font-heading font-bold text-white text-base mb-1">Kotak Masuk Pertanyaan</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed mb-4">Baca pertanyaan dan tanggapan dari pembaca website Anda.</p>
+                    <span class="text-xs font-semibold text-blue-400 flex items-center gap-1">Lihat Pesan <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
+                </div>
 
-                    <div class="pt-4 border-t border-slate-800/80 mt-4">
-                        <div class="text-[11px] text-slate-400">Status Sistem: <span class="text-biolum-emerald font-bold">Semua Operasional</span></div>
+                <div onclick="switchTab('reader-view')" class="clean-card p-5 rounded-xl cursor-pointer transition group">
+                    <div class="w-10 h-10 rounded-lg bg-slate-800 text-slate-200 flex items-center justify-center font-bold mb-3 group-hover:scale-105 transition">
+                        <i data-lucide="eye" class="w-5 h-5"></i>
                     </div>
+                    <h3 class="font-heading font-bold text-white text-base mb-1">Preview Mode Pengunjung</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed mb-4">Simulasikan bagaimana pengunjung membaca materi dan menyimpan bookmark.</p>
+                    <span class="text-xs font-semibold text-slate-300 flex items-center gap-1">Buka Preview <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></span>
                 </div>
             </div>
 
         </section>
 
-        <section id="tab-mlbb" class="hidden space-y-6">
-            <div class="flex justify-between items-center bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-cyan-950 text-biolum-cyan flex items-center justify-center font-bold">
-                        <i data-lucide="gamepad-2" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-heading font-bold text-white">Panduan Mobile Legends (Roamer & Jungler)</h3>
-                        <p class="text-slate-400 text-xs">Kelola materi strategi makro, rotasi, dan pengambilan keputusan di Mythic Glory.</p>
-                    </div>
-                </div>
-                <button onclick="openModal('addGuideModal', 'MLBB')" class="px-4 py-2 bg-cyan-950 text-biolum-cyan border border-cyan-800 rounded-xl text-xs font-bold hover:bg-cyan-900 transition flex items-center gap-2">
-                    <i data-lucide="plus-circle" class="w-4 h-4"></i> Tambah Taktik MLBB
-                </button>
-            </div>
-
-            <div class="glass-card rounded-2xl overflow-hidden border border-slate-800">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs">
-                        <thead class="bg-midnight-950/80 text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
-                            <tr>
-                                <th class="p-4">Judul Strategi</th>
-                                <th class="p-4">Role Fokus</th>
-                                <th class="p-4">Kategori Makro</th>
-                                <th class="p-4">Status</th>
-                                <th class="p-4 text-right">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="mlbbTableBody" class="divide-y divide-slate-800 text-slate-300">
-                            <!-- Dynamic Rows Rendered by JS -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <section id="tab-running" class="hidden space-y-6">
-            <div class="flex justify-between items-center bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-teal-950 text-biolum-teal flex items-center justify-center font-bold">
-                        <i data-lucide="footprints" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-heading font-bold text-white">Panduan Olahraga Lari & Endurance</h3>
-                        <p class="text-slate-400 text-xs">Kelola materi teknik postur, ritme pernapasan, cadence, dan zonasi latihan.</p>
-                    </div>
-                </div>
-                <button onclick="openModal('addGuideModal', 'Lari')" class="px-4 py-2 bg-teal-950 text-biolum-teal border border-teal-800 rounded-xl text-xs font-bold hover:bg-teal-900 transition flex items-center gap-2">
-                    <i data-lucide="plus-circle" class="w-4 h-4"></i> Tambah Metode Lari
-                </button>
-            </div>
-
-            <div class="glass-card rounded-2xl overflow-hidden border border-slate-800">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs">
-                        <thead class="bg-midnight-950/80 text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
-                            <tr>
-                                <th class="p-4">Nama Metode / Teknik</th>
-                                <th class="p-4">Tipe Latihan</th>
-                                <th class="p-4">Fokus Otot/Paru</th>
-                                <th class="p-4">Status</th>
-                                <th class="p-4 text-right">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="runningTableBody" class="divide-y divide-slate-800 text-slate-300">
-                            <!-- Dynamic Rows Rendered by JS -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <section id="tab-outdoor" class="hidden space-y-6">
-            <div class="flex justify-between items-center bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-950 text-biolum-emerald flex items-center justify-center font-bold">
-                        <i data-lucide="compass" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-heading font-bold text-white">Panduan Petualangan Outdoor</h3>
-                        <p class="text-slate-400 text-xs">Kelola materi persiapan pendakian, coastal camping, dan prosedur keselamatan.</p>
-                    </div>
-                </div>
-                <button onclick="openModal('addGuideModal', 'Outdoor')" class="px-4 py-2 bg-emerald-950 text-biolum-emerald border border-emerald-800 rounded-xl text-xs font-bold hover:bg-emerald-900 transition flex items-center gap-2">
-                    <i data-lucide="plus-circle" class="w-4 h-4"></i> Tambah Ekspedisi
-                </button>
-            </div>
-
-            <div class="glass-card rounded-2xl overflow-hidden border border-slate-800">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs">
-                        <thead class="bg-midnight-950/80 text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
-                            <tr>
-                                <th class="p-4">Topik Ekspedisi</th>
-                                <th class="p-4">Medan Alam</th>
-                                <th class="p-4">Tingkat Kesulitan</th>
-                                <th class="p-4">Status</th>
-                                <th class="p-4 text-right">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="outdoorTableBody" class="divide-y divide-slate-800 text-slate-300">
-                            <!-- Dynamic Rows Rendered by JS -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <section id="tab-gallery" class="hidden space-y-6">
-            <div class="flex justify-between items-center bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
+        <section id="tab-manage-guides" class="hidden space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900/90 p-4 rounded-xl border border-slate-800">
                 <div>
-                    <h3 class="font-heading font-bold text-white">Kelola Foto Galeri Kegiatan</h3>
-                    <p class="text-slate-400 text-xs">Tambah, ubah, atau hapus foto dokumentasi yang muncul pada halaman depan.</p>
+                    <h3 class="font-heading font-bold text-white text-base">Kelola Semua Panduan</h3>
+                    <p class="text-slate-400 text-xs">Daftar materi edukasi yang saat ini tampil di platform.</p>
                 </div>
-                <button onclick="openModal('addGalleryModal')" class="px-4 py-2 bg-gradient-to-r from-biolum-teal to-biolum-cyan text-midnight-950 rounded-xl text-xs font-bold transition flex items-center gap-2">
-                    <i data-lucide="upload" class="w-4 h-4"></i> Tambah Foto Baru
-                </button>
+                <div class="flex items-center gap-2">
+                    <select id="filterCategory" onchange="renderGuideList()" class="bg-slate-800 border border-slate-700 text-white text-xs rounded-lg px-3 py-2 focus:outline-none">
+                        <option value="ALL">Semua Kategori</option>
+                        <option value="MLBB">Mobile Legends</option>
+                        <option value="Lari">Olahraga Lari</option>
+                        <option value="Outdoor">Outdoor & Pendakian</option>
+                    </select>
+                </div>
             </div>
 
-            <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- Rendered dynamically by JS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="guidesAdminContainer">
+                <!-- Dynamic Admin Guides -->
             </div>
         </section>
 
-        <section id="tab-messages" class="hidden space-y-6">
-            <div class="flex justify-between items-center bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
+        <section id="tab-inbox" class="hidden space-y-5">
+            <div class="flex justify-between items-center bg-slate-900/90 p-4 rounded-xl border border-slate-800">
                 <div>
-                    <h3 class="font-heading font-bold text-white">Kotak Masuk Pesan & Diskusi</h3>
-                    <p class="text-slate-400 text-xs">Daftar pertanyaan dari pengunjung situs seputar taktik MLBB, lari, atau outdoor.</p>
+                    <h3 class="font-heading font-bold text-white text-base">Kotak Pertanyaan & Diskusi</h3>
+                    <p class="text-slate-400 text-xs">Pesan yang dikirimkan oleh pengunjung melalui form pertanyaan.</p>
                 </div>
-                <span class="text-xs text-amber-400 bg-amber-950/60 px-3 py-1 rounded-lg border border-amber-800">
-                    <i data-lucide="info" class="w-3.5 h-3.5 inline mr-1"></i> Data diperbarui otomatis
-                </span>
             </div>
 
-            <div class="space-y-4" id="messagesList">
-                <!-- Dynamic messages list rendered by JS -->
+            <div class="space-y-3" id="inboxContainer">
+                <!-- Dynamic Inbox -->
+            </div>
+        </section>
+
+        <section id="tab-reader-view" class="hidden space-y-6">
+            <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                <div>
+                    <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800/60 uppercase tracking-wider">Mode Preview Pengunjung</span>
+                    <h3 class="font-heading font-bold text-white text-base mt-1">Eksplorasi Panduan Pembaca</h3>
+                </div>
+                <button onclick="openQuestionModal()" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg transition flex items-center gap-2">
+                    <i data-lucide="message-square" class="w-3.5 h-3.5"></i> Simulasi Ajukan Pertanyaan
+                </button>
+            </div>
+
+            <!-- Category Filter Tabs for Visitor Mode -->
+            <div class="flex flex-wrap gap-2 border-b border-slate-800 pb-3">
+                <button onclick="filterVisitorCategory('ALL')" id="vcat-ALL" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-indigo-600 text-white transition">Semua Topik</button>
+                <button onclick="filterVisitorCategory('MLBB')" id="vcat-MLBB" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-900 transition">Mobile Legends</button>
+                <button onclick="filterVisitorCategory('Lari')" id="vcat-Lari" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-900 transition">Olahraga Lari</button>
+                <button onclick="filterVisitorCategory('Outdoor')" id="vcat-Outdoor" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-900 transition">Outdoor & Trekking</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="visitorGuidesContainer">
+                <!-- Dynamic Visitor Cards -->
+            </div>
+        </section>
+
+        <section id="tab-bookmarks" class="hidden space-y-5">
+            <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
+                <h3 class="font-heading font-bold text-white text-base">Panduan yang Disimpan</h3>
+                <p class="text-slate-400 text-xs">Materi favorit yang telah Anda tandai sebagai pembaca.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="bookmarksContainer">
+                <!-- Dynamic Bookmarks -->
             </div>
         </section>
 
     </main>
 
-    <!-- Modal 1: Quick Add/Edit Guide Modal -->
-    <div id="addGuideModal" class="fixed inset-0 bg-midnight-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4 overflow-y-auto">
-        <div class="glass-card max-w-xl w-full p-6 sm:p-8 rounded-3xl relative border border-slate-700">
-            <button onclick="closeModal('addGuideModal')" class="absolute top-6 right-6 text-slate-400 hover:text-white">
-                <i data-lucide="x" class="w-6 h-6"></i>
+    <div id="guideModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4 overflow-y-auto">
+        <div class="clean-card max-w-lg w-full p-6 rounded-2xl relative border border-slate-700">
+            <button onclick="closeModal('guideModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
             </button>
             
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-10 h-10 rounded-xl bg-biolum-teal/10 text-biolum-teal flex items-center justify-center font-bold">
-                    <i data-lucide="file-plus" class="w-5 h-5"></i>
-                </div>
+            <h3 id="guideModalTitle" class="font-heading text-xl font-bold text-white mb-1">Tambah Panduan Baru</h3>
+            <p class="text-slate-400 text-xs mb-4">Isi formulir berikut untuk mempublikasikan panduan edukasi.</p>
+
+            <form onsubmit="handleSaveGuide(event)" class="space-y-3.5 text-xs">
+                <input type="hidden" id="editGuideId" value="">
+                
                 <div>
-                    <h3 id="modalGuideTitle" class="font-heading text-xl font-bold text-white">Tambah Panduan Baru</h3>
-                    <p id="modalGuideSubtitle" class="text-slate-400 text-xs">Masukkan informasi detail untuk dipublikasikan.</p>
-                </div>
-            </div>
-
-            <form id="guideForm" onsubmit="handleSaveGuide(event)" class="space-y-4 text-xs">
-                <input type="hidden" id="guideId">
-                <input type="hidden" id="guideCategory">
-
-                <div>
-                    <label class="block text-slate-300 font-semibold mb-1">Judul Materi / Panduan</label>
-                    <input type="text" id="guideTitleInput" required placeholder="Contoh: Taktik Rotasi Roamer Menit Awal" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-biolum-teal">
+                    <label class="block text-slate-300 font-medium mb-1">Judul Panduan</label>
+                    <input type="text" id="gTitle" required placeholder="Contoh: Strategi Rotation Roamer Mobile Legends" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-indigo-500">
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-slate-300 font-semibold mb-1">Sub-Kategori / Tipe</label>
-                        <input type="text" id="guideSubtypeInput" required placeholder="Contoh: Roamer / Zone 2 / Night Trek" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-biolum-teal">
-                    </div>
-                    <div>
-                        <label class="block text-slate-300 font-semibold mb-1">Status Publikasi</label>
-                        <select id="guideStatusInput" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-biolum-teal">
-                            <option value="Published">Terbit (Published)</option>
-                            <option value="Draft">Draft (Simpan Draf)</option>
+                        <label class="block text-slate-300 font-medium mb-1">Kategori Utama</label>
+                        <select id="gCategory" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-indigo-500">
+                            <option value="MLBB">Mobile Legends</option>
+                            <option value="Lari">Olahraga Lari</option>
+                            <option value="Outdoor">Outdoor & Camping</option>
                         </select>
                     </div>
+                    <div>
+                        <label class="block text-slate-300 font-medium mb-1">Sub-topik / Peran</label>
+                        <input type="text" id="gSubtype" required placeholder="Contoh: Roamer / Zone 2 / Night Trek" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-indigo-500">
+                    </div>
                 </div>
 
                 <div>
-                    <label class="block text-slate-300 font-semibold mb-1">Penjelasan Singkat & Langkah-Langkah (How-To)</label>
-                    <textarea id="guideContentInput" rows="5" required placeholder="Tuliskan penjelasan teknis dan langkah-langkah praktisnya di sini..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-biolum-teal"></textarea>
+                    <label class="block text-slate-300 font-medium mb-1">Isi Materi Panduan</label>
+                    <textarea id="gContent" rows="5" required placeholder="Tuliskan isi panduan teknis secara rinci di sini..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-indigo-500 leading-relaxed"></textarea>
                 </div>
 
-                <div class="pt-2 flex justify-end gap-3">
-                    <button type="button" onclick="closeModal('addGuideModal')" class="px-5 py-2.5 bg-slate-800 text-slate-300 rounded-xl font-bold hover:bg-slate-700 transition">Batal</button>
-                    <button type="submit" class="px-5 py-2.5 bg-gradient-to-r from-biolum-teal to-biolum-cyan text-midnight-950 rounded-xl font-bold transition shadow-lg shadow-biolum-teal/20">Simpan Panduan</button>
+                <div class="pt-2 flex justify-end gap-2.5">
+                    <button type="button" onclick="closeModal('guideModal')" class="px-4 py-2 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-lg font-medium transition">Batal</button>
+                    <button type="submit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-medium transition">Simpan Panduan</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Modal 2: Add Gallery Photo Modal -->
-    <div id="addGalleryModal" class="fixed inset-0 bg-midnight-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-        <div class="glass-card max-w-md w-full p-6 rounded-3xl relative border border-slate-700">
-            <button onclick="closeModal('addGalleryModal')" class="absolute top-6 right-6 text-slate-400 hover:text-white">
-                <i data-lucide="x" class="w-6 h-6"></i>
+    <!-- Modal: Read Detail Modal -->
+    <div id="readGuideModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4 overflow-y-auto">
+        <div class="clean-card max-w-xl w-full p-6 rounded-2xl relative border border-slate-700">
+            <button onclick="closeModal('readGuideModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
             </button>
             
-            <h3 class="font-heading text-xl font-bold text-white mb-1">Tambah Foto Galeri</h3>
-            <p class="text-slate-400 text-xs mb-4">Masukkan tautan URL gambar serta judul momen kegiatan.</p>
+            <div class="flex items-center gap-2.5 mb-3">
+                <span id="modalCategoryBadge" class="text-[10px] font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-950/80 px-2.5 py-0.5 rounded border border-indigo-800/60">MLBB</span>
+            </div>
+            
+            <h3 id="modalGuideTitle" class="font-heading text-xl font-bold text-white mb-2">Detail Panduan</h3>
 
-            <form onsubmit="handleSaveGallery(event)" class="space-y-4 text-xs">
+            <div id="modalGuideContent" class="text-slate-300 text-xs sm:text-sm space-y-3 leading-relaxed border-t border-b border-slate-800 py-4 my-4">
+                <!-- Content injected dynamically -->
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <button id="modalBookmarkBtn" onclick="" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-amber-400 rounded-lg text-xs font-semibold transition flex items-center gap-2">
+                    <i data-lucide="bookmark" class="w-4 h-4"></i> Simpan Bookmark
+                </button>
+                <button onclick="closeModal('readGuideModal')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-semibold">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Send Question Modal -->
+    <div id="questionModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+        <div class="clean-card max-w-md w-full p-6 rounded-2xl relative border border-slate-700">
+            <button onclick="closeModal('questionModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <h3 class="font-heading text-xl font-bold text-white mb-1">Ajukan Pertanyaan</h3>
+            <p class="text-slate-400 text-xs mb-4">Tanyakan seputar taktik MLBB, metode lari, atau persiapan outdoor.</p>
+
+            <form onsubmit="handleSendQuestion(event)" class="space-y-3.5 text-xs">
                 <div>
-                    <label class="block text-slate-300 font-semibold mb-1">Judul / Caption Momen</label>
-                    <input type="text" id="galleryTitleInput" required placeholder="Contoh: Garis Finish Half Marathon" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-biolum-teal">
+                    <label class="block text-slate-300 font-medium mb-1">Nama Pengirim</label>
+                    <input type="text" id="qName" required placeholder="Contoh: Budi Santoso" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-indigo-500">
                 </div>
                 <div>
-                    <label class="block text-slate-300 font-semibold mb-1">Kategori Momen</label>
-                    <select id="galleryCategoryInput" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-biolum-teal">
-                        <option value="Finish Line">Finish Line (Lari)</option>
-                        <option value="Esports Arena">Esports Arena (MLBB)</option>
-                        <option value="Summit Trail">Summit Trail (Outdoor)</option>
-                        <option value="Midnight Shore">Midnight Shore (Pantai)</option>
+                    <label class="block text-slate-300 font-medium mb-1">Topik Disiplin</label>
+                    <select id="qCategory" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-indigo-500">
+                        <option value="MLBB">Mobile Legends</option>
+                        <option value="Lari">Olahraga Lari</option>
+                        <option value="Outdoor">Outdoor & Camping</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-slate-300 font-semibold mb-1">URL Gambar (Unsplash / Image Link)</label>
-                    <input type="url" id="galleryUrlInput" required placeholder="https://images.unsplash.com/photo-..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-biolum-teal">
+                    <label class="block text-slate-300 font-medium mb-1">Pertanyaan / Pesan</label>
+                    <textarea id="qText" rows="4" required placeholder="Tuliskan pertanyaan detail Anda di sini..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-indigo-500"></textarea>
                 </div>
 
-                <div class="pt-2 flex justify-end gap-3">
-                    <button type="button" onclick="closeModal('addGalleryModal')" class="px-4 py-2 bg-slate-800 text-slate-300 rounded-xl font-bold">Batal</button>
-                    <button type="submit" class="px-4 py-2 bg-biolum-teal text-midnight-950 rounded-xl font-bold">Unggah Foto</button>
+                <div class="pt-2 flex justify-end gap-2.5">
+                    <button type="button" onclick="closeModal('questionModal')" class="px-4 py-2 bg-slate-800 text-slate-300 hover:bg-slate-700 rounded-lg font-medium">Batal</button>
+                    <button type="submit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-medium">Kirim Pertanyaan</button>
                 </div>
             </form>
         </div>
@@ -509,41 +425,86 @@
         // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Data Stores with LocalStorage fallback
-        const defaultGuides = [
-            { id: '1', title: 'Peran & Cara Bermain Roamer (Open Map & CC)', category: 'MLBB', subtype: 'Roamer', content: 'Inisiasi peta, zoning musuh, dan rotasi pertolongan awal.', status: 'Published' },
-            { id: '2', title: 'Peran & Cara Bermain Jungler (Farming & Retribution)', category: 'MLBB', subtype: 'Jungler', content: 'Manajemen kalkulasi damage Retribution dan timming gank.', status: 'Published' },
-            { id: '3', title: 'Teknik Postur Tubuh & Cadence 180 SPM', category: 'Lari', subtype: 'Teknik Postur', content: 'Menjaga tubuh tegak condong ke depan dan midfoot strike.', status: 'Published' },
-            { id: '4', title: 'Metode Latihan Lari Aerobik Zone 2', category: 'Lari', subtype: 'Zone 2', content: 'Latihan pace santai membangun pembakaran lemak & stamina.', status: 'Published' },
-            { id: '5', title: 'Pendakian Malam & Persiapan Night Trek', category: 'Outdoor', subtype: 'Mountain', content: 'Panduan navigasi headlamp dan pakaian perlindungan dingin.', status: 'Published' },
-            { id: '6', title: 'Berkemah di Pesisir Pantai (Coastal Camping)', category: 'Outdoor', subtype: 'Coastal', content: 'Pemasangan pasak tenda berangin dan batas pasang laut.', status: 'Published' }
+        // Default Initial Guides Data
+        const initialGuides = [
+            { 
+                id: '1', 
+                title: 'Peran & Cara Bermain Roamer (Open Map & CC)', 
+                category: 'MLBB', 
+                subtype: 'Roamer', 
+                content: 'Sebagai Roamer, tugas utama kamu adalah memberikan penglihatan peta (open map) bagi tim. Selalu periksa semak-semak krusial sebelum war, jaga jarak aman dari damage utama musuh, dan gunakan skill Crowd Control (CC) saat musuh sedang off-guard.', 
+            },
+            { 
+                id: '2', 
+                title: 'Peran & Cara Bermain Jungler (Farming & Retribution)', 
+                category: 'MLBB', 
+                subtype: 'Jungler', 
+                content: 'Sebagai Jungler, fokus pada rotasi monster hutan yang efisien agar mencapai Level 4 secepat mungkin. Hitung damage kalkulasi Retribution berdasarkan level milikmu, lalu tahan Retribution hingga HP Turtle atau Lord tersisa persis di bawah angka indikator.', 
+            },
+            { 
+                id: '3', 
+                title: 'Teknik Postur Tubuh & Cadence Lari 180 SPM', 
+                category: 'Lari', 
+                subtype: 'Teknik Postur', 
+                content: 'Pertahankan postur tubuh sedikit condong ke depan dari pergelangan kaki. Jaga ritme pendaratan di pertengahan telapak kaki (midfoot strike) dan usahakan langkah mendekati 170-180 langkah per menit (SPM) untuk mengurangi beban kejutan pada lutut.', 
+            },
+            { 
+                id: '4', 
+                title: 'Metode Latihan Lari Aerobik Zone 2', 
+                category: 'Lari', 
+                subtype: 'Zone 2', 
+                content: 'Lari Zone 2 adalah latihan lari di mana kamu masih bisa berbicara lancar tanpa tersengal. Latihan ini membakar cadangan lemak sebagai bahan bakar utama dan membangun kapiler pembuluh darah untuk stamina jarak jauh.', 
+            },
+            { 
+                id: '5', 
+                title: 'Pendakian Malam & Persiapan Night Trek', 
+                category: 'Outdoor', 
+                subtype: 'Mountain', 
+                content: 'Night trek membutuhkan pencahayaan headlamp yang memadai dengan baterai cadangan. Pastikan memakai pakaian berbahan sintetis/quick-dry dan windproof shell layer untuk menangkal penurunan suhu ekstrem di gunung.', 
+            },
+            { 
+                id: '6', 
+                title: 'Berkemah di Pesisir Pantai (Coastal Camping)', 
+                category: 'Outdoor', 
+                subtype: 'Coastal', 
+                content: 'Saat berkemah di pantai, pasang tenda jauh di atas batas pasang surut air laut tertinggi. Gunakan pasak khusus pasir atau pasak berbeban batu agar tenda tahan dari hembusan angin laut malam.', 
+            }
         ];
 
-        const defaultGallery = [
-            { id: '1', title: 'Half Marathon Finish Medal', category: 'Finish Line', url: 'https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=600&q=80' },
-            { id: '2', title: 'Final MLBB Tournament Stage', category: 'Esports Arena', url: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80' },
-            { id: '3', title: 'Starry Ocean Breeze', category: 'Midnight Shore', url: 'https://images.unsplash.com/photo-1509114397022-ed747cca3f65?auto=format&fit=crop&w=600&q=80' },
-            { id: '4', title: 'Sunrise Above Clouds', category: 'Summit Trail', url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80' }
+        // Initial Questions Data
+        const initialQuestions = [
+            {
+                id: 'q1',
+                name: 'Rizky',
+                category: 'MLBB',
+                text: 'Bagaimana cara mengatasi Roamer musuh yang sering merusuh di buff awal?',
+                date: 'Hari ini, 10:15'
+            },
+            {
+                id: 'q2',
+                name: 'Andi S.',
+                category: 'Lari',
+                text: 'Berapa kali idealnya latihan lari Zone 2 dilakukan dalam seminggu untuk persiapan 10K?',
+                date: 'Kemarin, 16:40'
+            }
         ];
 
-        const defaultMessages = [
-            { id: '1', sender: 'Andi Pratama', email: 'andi@example.com', category: 'MLBB', text: 'Bagaimana tips Roamer saat menghadapi musuh dengan agresivitas invasi tinggi di awal game?', time: '10 Menit yang lalu', read: false },
-            { id: '2', sender: 'Rian Runner', email: 'rian@example.com', category: 'Lari', text: 'Apakah untuk pemula latihan Zone 2 boleh dikombinasikan dengan metode Run-Walk?', time: '2 Jam yang lalu', read: false },
-            { id: '3', sender: 'Budi Outdoor', email: 'budi@example.com', category: 'Outdoor', text: 'Rekomendasi jenis jaket waterproof layer terbaik untuk pendakian malam hari?', time: '1 Hari yang lalu', read: true }
-        ];
-
-        let guides = JSON.parse(localStorage.getItem('leon_guides')) || defaultGuides;
-        let gallery = JSON.parse(localStorage.getItem('leon_gallery')) || defaultGallery;
-        let messages = JSON.parse(localStorage.getItem('leon_messages')) || defaultMessages;
+        // Persistent State
+        let guidesData = JSON.parse(localStorage.getItem('leon_hub_guides')) || initialGuides;
+        let questionsData = JSON.parse(localStorage.getItem('leon_hub_questions')) || initialQuestions;
+        let bookmarks = JSON.parse(localStorage.getItem('leon_visitor_bookmarks')) || [];
+        let readGuides = JSON.parse(localStorage.getItem('leon_visitor_reads')) || [];
+        let currentRole = localStorage.getItem('leon_hub_role') || 'ADMIN'; // 'ADMIN' or 'VISITOR'
+        let currentVisitorFilter = 'ALL';
 
         function switchTab(tabName) {
-            const tabs = ['overview', 'mlbb', 'running', 'outdoor', 'gallery', 'messages'];
+            const tabs = ['overview', 'manage-guides', 'inbox', 'reader-view', 'bookmarks'];
             tabs.forEach(t => {
                 const el = document.getElementById(`tab-${t}`);
                 const navBtn = document.getElementById(`nav-${t}`);
                 if (el) el.classList.add('hidden');
                 if (navBtn) {
-                    navBtn.classList.remove('bg-teal-950/40', 'border', 'border-teal-800/50', 'text-biolum-teal');
+                    navBtn.classList.remove('bg-indigo-950/40', 'border', 'border-indigo-800/40', 'text-indigo-400');
                     navBtn.classList.add('text-slate-300');
                 }
             });
@@ -552,226 +513,397 @@
             const activeNav = document.getElementById(`nav-${tabName}`);
             if (activeTab) activeTab.classList.remove('hidden');
             if (activeNav) {
-                activeNav.classList.add('bg-teal-950/40', 'border', 'border-teal-800/50', 'text-biolum-teal');
+                activeNav.classList.add('bg-indigo-950/40', 'border', 'border-indigo-800/40', 'text-indigo-400');
             }
 
-            // Update Page Title
             const pageTitle = document.getElementById('pageTitle');
-            if (pageTitle) {
-                const titles = {
-                    overview: 'Dashboard Overview',
-                    mlbb: 'Kelola Panduan Mobile Legends',
-                    running: 'Kelola Panduan Olahraga Lari',
-                    outdoor: 'Kelola Panduan Petualangan Outdoor',
-                    gallery: 'Kelola Galeri Foto Momen',
-                    messages: 'Kotak Masuk Pesan & Pertanyaan'
-                };
-                pageTitle.innerText = titles[tabName] || 'Admin Dashboard';
-            }
+            const pageSubtitle = document.getElementById('pageSubtitle');
+            
+            const titles = {
+                overview: 'Ringkasan Dashboard',
+                'manage-guides': 'Kelola Materi Panduan',
+                inbox: 'Kotak Masuk Pertanyaan',
+                'reader-view': 'Tampilan Mode Pengunjung',
+                bookmarks: 'Bookmark Tersimpan'
+            };
 
-            renderAllTables();
+            const subtitles = {
+                overview: 'Kelola materi panduan, pantau statistik, dan jawab pertanyaan pengunjung.',
+                'manage-guides': 'Tambah, perbarui, atau hapus materi edukasi untuk pengunjung.',
+                inbox: 'Daftar pertanyaan dari pembaca seputar game, lari, dan outdoor.',
+                'reader-view': 'Antarmuka pembaca untuk menjelajahi materi edukasi.',
+                bookmarks: 'Kumpulan panduan favorit yang telah ditandai.'
+            };
+
+            if (pageTitle) pageTitle.innerText = titles[tabName] || 'Hub Dashboard';
+            if (pageSubtitle) pageSubtitle.innerText = subtitles[tabName] || '';
+
+            renderAllData();
         }
 
-        function renderAllTables() {
-            // Stats
-            document.getElementById('statTotalGuides').innerText = guides.length;
-            document.getElementById('statTotalGallery').innerText = gallery.length;
-            document.getElementById('statTotalMessages').innerText = messages.length;
+        function toggleRole() {
+            currentRole = (currentRole === 'ADMIN') ? 'VISITOR' : 'ADMIN';
+            localStorage.setItem('leon_hub_role', currentRole);
+            updateRoleUI();
+            showToast(`Mode diubah ke: ${currentRole === 'ADMIN' ? 'Administrator' : 'Pengunjung'}`);
+        }
 
-            // Unread Badge
-            const unreadCount = messages.filter(m => !m.read).length;
-            const badge = document.getElementById('unreadBadge');
-            if (badge) badge.innerText = unreadCount;
+        function updateRoleUI() {
+            const roleBadge = document.getElementById('roleBadge');
+            const activeRoleText = document.getElementById('activeRoleText');
+            const adminAddGuideBtn = document.getElementById('adminAddGuideBtn');
 
-            // Render MLBB Table
-            const mlbbBody = document.getElementById('mlbbTableBody');
-            const mlbbGuides = guides.filter(g => g.category === 'MLBB');
-            mlbbBody.innerHTML = mlbbGuides.map(g => `
-                <tr class="hover:bg-slate-900/40 transition">
-                    <td class="p-4 font-semibold text-white">${g.title}</td>
-                    <td class="p-4"><span class="px-2 py-0.5 rounded bg-cyan-950 text-biolum-cyan font-bold">${g.subtype}</span></td>
-                    <td class="p-4 text-slate-400">Makro & Inisiasi</td>
-                    <td class="p-4"><span class="px-2 py-0.5 rounded bg-emerald-950 text-biolum-emerald text-[10px] font-bold">${g.status}</span></td>
-                    <td class="p-4 text-right space-x-2">
-                        <button onclick="editGuide('${g.id}')" class="text-biolum-teal hover:underline font-bold">Edit</button>
-                        <button onclick="deleteGuide('${g.id}')" class="text-rose-400 hover:underline font-bold">Hapus</button>
-                    </td>
-                </tr>
-            `).join('');
+            if (currentRole === 'ADMIN') {
+                if (roleBadge) {
+                    roleBadge.innerText = 'Admin Hub';
+                    roleBadge.className = 'text-[10px] font-semibold uppercase tracking-wider text-indigo-300 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-800/60';
+                }
+                if (activeRoleText) activeRoleText.innerText = 'Administrator';
+                if (adminAddGuideBtn) adminAddGuideBtn.classList.remove('hidden');
+            } else {
+                if (roleBadge) {
+                    roleBadge.innerText = 'Visitor Hub';
+                    roleBadge.className = 'text-[10px] font-semibold uppercase tracking-wider text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/60';
+                }
+                if (activeRoleText) activeRoleText.innerText = 'Pengunjung / Pembaca';
+                if (adminAddGuideBtn) adminAddGuideBtn.classList.add('hidden');
+            }
+        }
 
-            // Render Running Table
-            const runningBody = document.getElementById('runningTableBody');
-            const runningGuides = guides.filter(g => g.category === 'Lari');
-            runningBody.innerHTML = runningGuides.map(g => `
-                <tr class="hover:bg-slate-900/40 transition">
-                    <td class="p-4 font-semibold text-white">${g.title}</td>
-                    <td class="p-4"><span class="px-2 py-0.5 rounded bg-teal-950 text-biolum-teal font-bold">${g.subtype}</span></td>
-                    <td class="p-4 text-slate-400">Kapasitas Paru & Otot</td>
-                    <td class="p-4"><span class="px-2 py-0.5 rounded bg-emerald-950 text-biolum-emerald text-[10px] font-bold">${g.status}</span></td>
-                    <td class="p-4 text-right space-x-2">
-                        <button onclick="editGuide('${g.id}')" class="text-biolum-teal hover:underline font-bold">Edit</button>
-                        <button onclick="deleteGuide('${g.id}')" class="text-rose-400 hover:underline font-bold">Hapus</button>
-                    </td>
-                </tr>
-            `).join('');
+        function renderAllData() {
+            updateRoleUI();
 
-            // Render Outdoor Table
-            const outdoorBody = document.getElementById('outdoorTableBody');
-            const outdoorGuides = guides.filter(g => g.category === 'Outdoor');
-            outdoorBody.innerHTML = outdoorGuides.map(g => `
-                <tr class="hover:bg-slate-900/40 transition">
-                    <td class="p-4 font-semibold text-white">${g.title}</td>
-                    <td class="p-4"><span class="px-2 py-0.5 rounded bg-emerald-950 text-biolum-emerald font-bold">${g.subtype}</span></td>
-                    <td class="p-4 text-slate-400">Menengah / Keselamatan</td>
-                    <td class="p-4"><span class="px-2 py-0.5 rounded bg-emerald-950 text-biolum-emerald text-[10px] font-bold">${g.status}</span></td>
-                    <td class="p-4 text-right space-x-2">
-                        <button onclick="editGuide('${g.id}')" class="text-biolum-teal hover:underline font-bold">Edit</button>
-                        <button onclick="deleteGuide('${g.id}')" class="text-rose-400 hover:underline font-bold">Hapus</button>
-                    </td>
-                </tr>
-            `).join('');
+            // Stats Update
+            document.getElementById('statTotalGuides').innerText = guidesData.length;
+            document.getElementById('navGuideCountBadge').innerText = guidesData.length;
+            document.getElementById('statQuestionsCount').innerText = questionsData.length;
+            document.getElementById('navInboxBadge').innerText = questionsData.length;
+            document.getElementById('statReadProgress').innerText = readGuides.length;
+            document.getElementById('bookmarkBadge').innerText = bookmarks.length;
 
-            // Render Gallery Grid
-            const galleryGrid = document.getElementById('galleryGrid');
-            galleryGrid.innerHTML = gallery.map(item => `
-                <div class="glass-card rounded-2xl overflow-hidden relative group">
-                    <img src="${item.url}" alt="${item.title}" class="w-full h-36 object-cover group-hover:scale-105 transition duration-500">
-                    <div class="p-3">
-                        <span class="text-[10px] font-bold text-biolum-teal uppercase">${item.category}</span>
-                        <div class="text-xs font-bold text-white truncate">${item.title}</div>
-                    </div>
-                    <button onclick="deleteGallery('${item.id}')" class="absolute top-2 right-2 p-1.5 bg-rose-950/80 text-rose-300 rounded-lg border border-rose-800 opacity-0 group-hover:opacity-100 transition">
-                        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-                    </button>
-                </div>
-            `).join('');
-
-            // Render Messages
-            const messagesList = document.getElementById('messagesList');
-            messagesList.innerHTML = messages.map(msg => `
-                <div class="glass-card p-5 rounded-2xl border ${msg.read ? 'border-slate-800' : 'border-amber-500/40'} flex flex-col sm:flex-row justify-between items-start gap-4">
-                    <div class="space-y-1">
-                        <div class="flex items-center gap-2">
-                            <span class="text-xs font-bold text-white">${msg.sender}</span>
-                            <span class="text-[10px] text-slate-400">(${msg.email})</span>
-                            <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-biolum-cyan font-bold">${msg.category}</span>
-                        </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">${msg.text}</p>
-                        <div class="text-[10px] text-slate-500">${msg.time}</div>
-                    </div>
-                    <div class="flex items-center gap-2 shrink-0">
-                        ${!msg.read ? `<button onclick="markRead('${msg.id}')" class="px-3 py-1.5 bg-amber-950 text-amber-300 border border-amber-800 text-xs font-bold rounded-lg">Tandai Dibaca</button>` : `<span class="text-xs text-emerald-400 font-semibold"><i data-lucide="check-circle" class="w-3.5 h-3.5 inline"></i> Dibaca</span>`}
-                        <button onclick="deleteMessage('${msg.id}')" class="px-3 py-1.5 bg-slate-800 text-slate-400 hover:text-rose-400 text-xs font-bold rounded-lg">Hapus</button>
-                    </div>
-                </div>
-            `).join('');
+            renderGuideList();
+            renderInbox();
+            renderVisitorGuides();
+            renderBookmarks();
 
             lucide.createIcons();
         }
 
-        function openModal(modalId, category = 'MLBB') {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
+        function renderGuideList() {
+            const container = document.getElementById('guidesAdminContainer');
+            const filter = document.getElementById('filterCategory').value;
+            const filtered = filter === 'ALL' ? guidesData : guidesData.filter(g => g.category === filter);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full clean-card p-8 rounded-xl text-center text-slate-400 text-xs">
+                        Belum ada panduan dalam kategori ini.
+                    </div>
+                `;
+                return;
             }
-            if (modalId === 'addGuideModal') {
-                document.getElementById('guideCategory').value = category;
-                document.getElementById('modalGuideTitle').innerText = `Tambah Panduan Baru (${category})`;
-                document.getElementById('guideForm').reset();
-                document.getElementById('guideId').value = '';
+
+            container.innerHTML = filtered.map(g => `
+                <div class="clean-card p-5 rounded-xl flex flex-col justify-between border border-slate-800">
+                    <div>
+                        <div class="flex items-center justify-between mb-2.5">
+                            <span class="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider rounded bg-indigo-950 text-indigo-300 border border-indigo-800/60">${g.category} • ${g.subtype}</span>
+                            
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="openGuideModal('${g.id}')" title="Edit" class="text-slate-400 hover:text-indigo-400 p-1 transition">
+                                    <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <button onclick="deleteGuide('${g.id}')" title="Hapus" class="text-slate-400 hover:text-rose-400 p-1 transition">
+                                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h4 class="font-heading font-bold text-white text-sm mb-2 leading-snug">${g.title}</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed line-clamp-3">${g.content}</p>
+                    </div>
+
+                    <div class="mt-5 pt-3 border-t border-slate-800/80 flex justify-between items-center text-[11px] text-slate-500">
+                        <span>ID: #${g.id}</span>
+                        <button onclick="readGuide('${g.id}')" class="text-indigo-400 hover:underline font-medium">Pratinjau</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderInbox() {
+            const container = document.getElementById('inboxContainer');
+            
+            if (questionsData.length === 0) {
+                container.innerHTML = `
+                    <div class="clean-card p-8 rounded-xl text-center text-slate-400 text-xs">
+                        Belum ada pertanyaan dari pengunjung.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = questionsData.map(q => `
+                <div class="clean-card p-4 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start gap-4">
+                    <div class="space-y-1.5">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold text-white">${q.name}</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">${q.category}</span>
+                            <span class="text-[10px] text-slate-500">${q.date}</span>
+                        </div>
+                        <p class="text-slate-300 text-xs leading-relaxed">${q.text}</p>
+                    </div>
+                    <button onclick="deleteQuestion('${q.id}')" class="px-3 py-1.5 bg-slate-800 hover:bg-rose-900/60 text-slate-300 hover:text-rose-300 rounded-lg text-xs font-medium transition shrink-0 flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5"></i> Tandai Selesai
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function filterVisitorCategory(cat) {
+            currentVisitorFilter = cat;
+            const buttons = ['ALL', 'MLBB', 'Lari', 'Outdoor'];
+            buttons.forEach(b => {
+                const btn = document.getElementById(`vcat-${b}`);
+                if (btn) {
+                    if (b === cat) {
+                        btn.className = 'px-3 py-1.5 rounded-lg text-xs font-medium bg-indigo-600 text-white transition';
+                    } else {
+                        btn.className = 'px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-900 transition';
+                    }
+                }
+            });
+            renderVisitorGuides();
+            lucide.createIcons();
+        }
+
+        function renderVisitorGuides() {
+            const container = document.getElementById('visitorGuidesContainer');
+            const filtered = currentVisitorFilter === 'ALL' 
+                ? guidesData 
+                : guidesData.filter(g => g.category === currentVisitorFilter);
+
+            container.innerHTML = filtered.map(g => {
+                const isBookmarked = bookmarks.includes(g.id);
+                const isRead = readGuides.includes(g.id);
+
+                return `
+                    <div class="clean-card p-5 rounded-xl flex flex-col justify-between border border-slate-800 hover:border-slate-700 transition">
+                        <div>
+                            <div class="flex items-center justify-between mb-2.5">
+                                <span class="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider rounded bg-indigo-950 text-indigo-300 border border-indigo-800/60">${g.category} • ${g.subtype}</span>
+                                <button onclick="toggleBookmark('${g.id}')" class="text-slate-400 hover:text-amber-400 transition">
+                                    <i data-lucide="bookmark" class="w-4 h-4 ${isBookmarked ? 'text-amber-400 fill-amber-400' : ''}"></i>
+                                </button>
+                            </div>
+                            <h4 class="font-heading font-bold text-white text-base mb-2">${g.title}</h4>
+                            <p class="text-slate-300 text-xs leading-relaxed line-clamp-3">${g.content}</p>
+                        </div>
+
+                        <div class="mt-5 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                            <span class="text-[11px] ${isRead ? 'text-emerald-400 font-medium' : 'text-slate-500'} flex items-center gap-1">
+                                <i data-lucide="${isRead ? 'check-circle-2' : 'circle'}" class="w-3.5 h-3.5"></i>
+                                ${isRead ? 'Sudah Dibaca' : 'Belum Dibaca'}
+                            </span>
+                            <button onclick="readGuide('${g.id}')" class="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium rounded-lg transition">
+                                Baca Panduan
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderBookmarks() {
+            const container = document.getElementById('bookmarksContainer');
+            const bookmarkedGuides = guidesData.filter(g => bookmarks.includes(g.id));
+
+            if (bookmarkedGuides.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full clean-card p-8 rounded-xl text-center space-y-2">
+                        <i data-lucide="bookmark-x" class="w-8 h-8 text-slate-500 mx-auto"></i>
+                        <div class="text-white font-bold text-sm">Belum Ada Bookmark</div>
+                        <p class="text-slate-400 text-xs">Klik ikon bookmark pada panduan manapun untuk menyimpannya di sini.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = bookmarkedGuides.map(g => `
+                <div class="clean-card p-5 rounded-xl flex flex-col justify-between border border-amber-500/20">
+                    <div>
+                        <div class="flex items-center justify-between mb-2.5">
+                            <span class="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider rounded bg-amber-950 text-amber-300 border border-amber-800/60">${g.category} - ${g.subtype}</span>
+                            <button onclick="toggleBookmark('${g.id}')" class="text-amber-400 hover:text-rose-400 transition">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <h4 class="font-heading font-bold text-white text-base mb-2">${g.title}</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed">${g.content}</p>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-slate-800/80 flex justify-end">
+                        <button onclick="readGuide('${g.id}')" class="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium rounded-lg transition">
+                            Buka Panduan
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openGuideModal(id = null) {
+            const modal = document.getElementById('guideModal');
+            const titleEl = document.getElementById('guideModalTitle');
+            
+            if (id) {
+                const g = guidesData.find(item => item.id === id);
+                if (g) {
+                    titleEl.innerText = 'Edit Panduan Edukasi';
+                    document.getElementById('editGuideId').value = g.id;
+                    document.getElementById('gTitle').value = g.title;
+                    document.getElementById('gCategory').value = g.category;
+                    document.getElementById('gSubtype').value = g.subtype;
+                    document.getElementById('gContent').value = g.content;
+                }
+            } else {
+                titleEl.innerText = 'Tambah Panduan Baru';
+                document.getElementById('editGuideId').value = '';
+                document.getElementById('gTitle').value = '';
+                document.getElementById('gCategory').value = 'MLBB';
+                document.getElementById('gSubtype').value = '';
+                document.getElementById('gContent').value = '';
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function handleSaveGuide(e) {
+            e.preventDefault();
+            const editId = document.getElementById('editGuideId').value;
+            const title = document.getElementById('gTitle').value;
+            const category = document.getElementById('gCategory').value;
+            const subtype = document.getElementById('gSubtype').value;
+            const content = document.getElementById('gContent').value;
+
+            if (editId) {
+                const index = guidesData.findIndex(g => g.id === editId);
+                if (index !== -1) {
+                    guidesData[index] = { id: editId, title, category, subtype, content };
+                    showToast('Panduan berhasil diperbarui!');
+                }
+            } else {
+                const newGuide = {
+                    id: Date.now().toString(),
+                    title,
+                    category,
+                    subtype,
+                    content
+                };
+                guidesData.push(newGuide);
+                showToast('Panduan baru berhasil ditambahkan!');
+            }
+
+            localStorage.setItem('leon_hub_guides', JSON.stringify(guidesData));
+            closeModal('guideModal');
+            renderAllData();
+        }
+
+        function deleteGuide(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus panduan ini?')) {
+                guidesData = guidesData.filter(g => g.id !== id);
+                bookmarks = bookmarks.filter(bId => bId !== id);
+                localStorage.setItem('leon_hub_guides', JSON.stringify(guidesData));
+                localStorage.setItem('leon_visitor_bookmarks', JSON.stringify(bookmarks));
+                showToast('Panduan berhasil dihapus');
+                renderAllData();
             }
         }
 
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
+        function deleteQuestion(id) {
+            questionsData = questionsData.filter(q => q.id !== id);
+            localStorage.setItem('leon_hub_questions', JSON.stringify(questionsData));
+            showToast('Pertanyaan ditandai selesai');
+            renderAllData();
+        }
+
+        function readGuide(id) {
+            const g = guidesData.find(item => item.id === id);
+            if (!g) return;
+
+            if (!readGuides.includes(id)) {
+                readGuides.push(id);
+                localStorage.setItem('leon_visitor_reads', JSON.stringify(readGuides));
+            }
+
+            document.getElementById('modalCategoryBadge').innerText = `${g.category} • ${g.subtype}`;
+            document.getElementById('modalGuideTitle').innerText = g.title;
+            document.getElementById('modalGuideContent').innerHTML = `<p>${g.content}</p>`;
+
+            const isBookmarked = bookmarks.includes(id);
+            const bookmarkBtn = document.getElementById('modalBookmarkBtn');
+            bookmarkBtn.setAttribute('onclick', `toggleBookmark('${id}')`);
+            bookmarkBtn.innerHTML = `<i data-lucide="bookmark" class="w-4 h-4 ${isBookmarked ? 'fill-amber-400' : ''}"></i> ${isBookmarked ? 'Hapus Bookmark' : 'Simpan Bookmark'}`;
+
+            const modal = document.getElementById('readGuideModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            renderAllData();
+        }
+
+        function toggleBookmark(id) {
+            if (bookmarks.includes(id)) {
+                bookmarks = bookmarks.filter(bId => bId !== id);
+                showToast('Bookmark dihapus');
+            } else {
+                bookmarks.push(id);
+                showToast('Disimpan ke Bookmark!');
+            }
+            localStorage.setItem('leon_visitor_bookmarks', JSON.stringify(bookmarks));
+            renderAllData();
+        }
+
+        function openQuestionModal() {
+            const modal = document.getElementById('questionModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
             if (modal) {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
             }
         }
 
-        function handleSaveGuide(e) {
+        function handleSendQuestion(e) {
             e.preventDefault();
-            const id = document.getElementById('guideId').value || Date.now().toString();
-            const title = document.getElementById('guideTitleInput').value;
-            const subtype = document.getElementById('guideSubtypeInput').value;
-            const category = document.getElementById('guideCategory').value || 'MLBB';
-            const content = document.getElementById('guideContentInput').value;
-            const status = document.getElementById('guideStatusInput').value;
+            const name = document.getElementById('qName').value;
+            const category = document.getElementById('qCategory').value;
+            const text = document.getElementById('qText').value;
 
-            const existingIdx = guides.findIndex(g => g.id === id);
-            if (existingIdx >= 0) {
-                guides[existingIdx] = { id, title, category, subtype, content, status };
-            } else {
-                guides.push({ id, title, category, subtype, content, status });
-            }
+            const newQ = {
+                id: Date.now().toString(),
+                name,
+                category,
+                text,
+                date: 'Baru saja'
+            };
 
-            localStorage.setItem('leon_guides', JSON.stringify(guides));
-            closeModal('addGuideModal');
-            renderAllTables();
-            showToast('Panduan berhasil disimpan!');
+            questionsData.unshift(newQ);
+            localStorage.setItem('leon_hub_questions', JSON.stringify(questionsData));
+
+            closeModal('questionModal');
+            showToast(`Terima kasih ${name}, pertanyaan Anda telah terkirim!`);
+            document.getElementById('qName').value = '';
+            document.getElementById('qText').value = '';
+            renderAllData();
         }
 
-        function editGuide(id) {
-            const g = guides.find(item => item.id === id);
-            if (!g) return;
-            openModal('addGuideModal', g.category);
-            document.getElementById('guideId').value = g.id;
-            document.getElementById('guideTitleInput').value = g.title;
-            document.getElementById('guideSubtypeInput').value = g.subtype;
-            document.getElementById('guideCategory').value = g.category;
-            document.getElementById('guideContentInput').value = g.content;
-            document.getElementById('guideStatusInput').value = g.status;
-            document.getElementById('modalGuideTitle').innerText = `Edit Panduan (${g.category})`;
-        }
-
-        function deleteGuide(id) {
-            guides = guides.filter(g => g.id !== id);
-            localStorage.setItem('leon_guides', JSON.stringify(guides));
-            renderAllTables();
-            showToast('Panduan telah dihapus.', 'info');
-        }
-
-        function handleSaveGallery(e) {
-            e.preventDefault();
-            const title = document.getElementById('galleryTitleInput').value;
-            const category = document.getElementById('galleryCategoryInput').value;
-            const url = document.getElementById('galleryUrlInput').value;
-
-            gallery.push({ id: Date.now().toString(), title, category, url });
-            localStorage.setItem('leon_gallery', JSON.stringify(gallery));
-            closeModal('addGalleryModal');
-            renderAllTables();
-            showToast('Foto galeri berhasil diunggah!');
-        }
-
-        function deleteGallery(id) {
-            gallery = gallery.filter(g => g.id !== id);
-            localStorage.setItem('leon_gallery', JSON.stringify(gallery));
-            renderAllTables();
-            showToast('Foto galeri dihapus.', 'info');
-        }
-
-        function markRead(id) {
-            const msg = messages.find(m => m.id === id);
-            if (msg) msg.read = true;
-            localStorage.setItem('leon_messages', JSON.stringify(messages));
-            renderAllTables();
-            showToast('Pesan ditandai dibaca');
-        }
-
-        function deleteMessage(id) {
-            messages = messages.filter(m => m.id !== id);
-            localStorage.setItem('leon_messages', JSON.stringify(messages));
-            renderAllTables();
-            showToast('Pesan telah dihapus', 'info');
-        }
-
-        function showToast(message, type = 'success') {
+        function showToast(message) {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
-            toast.className = `p-4 rounded-xl text-xs font-bold text-white shadow-xl flex items-center justify-between border ${type === 'success' ? 'bg-teal-950/90 border-biolum-teal text-biolum-teal' : 'bg-slate-900/90 border-slate-700 text-slate-200'} pointer-events-auto transition duration-300`;
+            toast.className = 'p-3.5 rounded-lg text-xs font-medium text-white bg-slate-900 border border-slate-700 shadow-xl flex items-center justify-between pointer-events-auto transition duration-300';
             toast.innerHTML = `<span>${message}</span>`;
             container.appendChild(toast);
 
@@ -782,98 +914,7 @@
         }
 
         window.onload = function() {
-            renderAllTables();
-
-            const ctx = document.getElementById('analyticsChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
-                    datasets: [
-                        {
-                            label: 'MLBB Guide Views',
-                            data: [120, 190, 300, 250, 420, 510, 600],
-                            borderColor: '#38BDF8',
-                            backgroundColor: 'rgba(56, 189, 248, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        },
-                        {
-                            label: 'Lari & Pace Views',
-                            data: [80, 150, 200, 180, 290, 380, 450],
-                            borderColor: '#2DD4BF',
-                            backgroundColor: 'rgba(45, 212, 191, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        },
-                        {
-                            label: 'Outdoor Trek Views',
-                            data: [50, 90, 140, 130, 210, 280, 340],
-                            borderColor: '#34D399',
-                            backgroundColor: 'rgba(52, 211, 153, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: { color: '#94A3B8', font: { family: 'Inter', size: 11 } }
-                        }
-                    },
-                    scales: {
-                        x: { ticks: { color: '#64748B' }, grid: { color: 'rgba(255, 255, 255, 0.05)' } },
-                        y: { ticks: { color: '#64748B' }, grid: { color: 'rgba(255, 255, 255, 0.05)' } }
-                    }
-                }
-            });
-
-            const canvas = document.getElementById('adminBiolumCanvas');
-            const cCtx = canvas.getContext('2d');
-            let particles = [];
-
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
-
-            class Particle {
-                constructor() {
-                    this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * canvas.height;
-                    this.size = Math.random() * 2 + 0.5;
-                    this.speedY = -Math.random() * 0.4 - 0.1;
-                    this.opacity = Math.random() * 0.5 + 0.2;
-                }
-                update() {
-                    this.y += this.speedY;
-                    if (this.y < 0) {
-                        this.y = canvas.height;
-                        this.x = Math.random() * canvas.width;
-                    }
-                }
-                draw() {
-                    cCtx.fillStyle = '#2DD4BF';
-                    cCtx.globalAlpha = this.opacity;
-                    cCtx.beginPath();
-                    cCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    cCtx.fill();
-                }
-            }
-
-            for (let i = 0; i < 40; i++) particles.push(new Particle());
-
-            function animateCanvas() {
-                cCtx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(p => { p.update(); p.draw(); });
-                requestAnimationFrame(animateCanvas);
-            }
-            animateCanvas();
+            renderAllData();
         };
     </script>
 </body>
